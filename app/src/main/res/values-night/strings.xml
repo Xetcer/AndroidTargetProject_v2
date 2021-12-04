@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_target">main_target</string>
+    <string name="cur_target">Цель:</string>
+    <string name="no_target">Чтобы достичь цели, нужно ее создать.</string>
+    <string name="add_target_text">Поставь новую цель</string>
+    <string name="target_list">Список целей</string>
+</resources>

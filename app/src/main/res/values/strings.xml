@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">targetProject_v2</string>
+    <string name="main_target">main_target</string>
+    <string name="add_target">add_target</string>
+    <string name="list_target">list_target</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cur_target">Цель:</string>
+    <string name="no_target">Чтобы достичь цели, нужно ее создать.</string>
+    <string name="add_target_text">Поставь новую цель</string>
+    <string name="target_list">Список целей</string>
+</resources>

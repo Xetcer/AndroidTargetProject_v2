@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_target_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_check_24"
+        android:title="@string/main_target"/>
+    <item
+        android:id="@+id/add_target_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="@string/add_target"/>
+    <item
+        android:id="@+id/list_target_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_list_24"
+        android:title="@string/list_target"/>
+</menu>
