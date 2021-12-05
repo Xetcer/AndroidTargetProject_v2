@@ -3,9 +3,7 @@ package xetzer.targetproject_v2
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -24,12 +22,12 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationMenu.setOnItemSelectedListener { item->
             var fragment:Fragment?=null
             when (item.itemId){
-                R.id.main_target_fragment -> {fragment = main_target_fragment()}
-                R.id.add_target_fragment -> {fragment = add_target_fragment()}
-                R.id.list_target_fragment -> {fragment = list_target_fragment()}
+                R.id.main_target_fragment -> {fragment = MainTargetFragment()}
+                R.id.add_target_fragment -> {fragment = AddTargetFragment()}
+                R.id.list_target_fragment -> {fragment = ListTargetFragment()}
             }
             if (fragment == null)
-                fragment = main_target_fragment()
+                fragment = MainTargetFragment()
             replaceFragment(fragment)
             true
         }
