@@ -34,7 +34,7 @@ class ListTargetFragment : Fragment() {
         target_recycler_view.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         target_recycler_view.adapter = TargetAdapter(target.targetList)
-        target_recycler_view.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL))
+        target_recycler_view.addItemDecoration(DividerItemDecoration(target_recycler_view.context, DividerItemDecoration.VERTICAL))
         return view
     }
 }

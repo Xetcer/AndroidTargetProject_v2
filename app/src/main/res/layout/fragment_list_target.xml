@@ -17,8 +17,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="2dp"
         android:id="@+id/target_recycler_view"
         app:layout_constraintTop_toBottomOf="@id/target_list_textView"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         />

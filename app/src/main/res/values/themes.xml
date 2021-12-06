@@ -27,6 +27,7 @@
         <item name="android:layout_width">match_parent</item>
     </style>
     <style name="Theme.TargetProject_v2.ImageView">
+        <item name="android:src">@drawable/target_png</item>
         <item name="android:scaleType">fitCenter</item>
     </style>
     <style name="Theme.TargetProject_v2.Buttons" >

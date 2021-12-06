@@ -9,4 +9,5 @@
     <string name="no_target">Чтобы достичь цели, нужно ее создать.</string>
     <string name="add_target_text">Поставь новую цель</string>
     <string name="target_list">Список целей</string>
+    <string name="send_to">отправить...</string>
 </resources>
