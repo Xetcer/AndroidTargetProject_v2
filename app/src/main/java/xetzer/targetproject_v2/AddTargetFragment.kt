@@ -11,7 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import java.util.*
-
+const val TYPED_TEXT_TAG = "TepedText"
 class AddTargetFragment : Fragment() {
     lateinit var addTargetEditText: EditText
     override fun onCreateView(
@@ -23,6 +23,9 @@ class AddTargetFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_target, container, false)
         addTargetEditText = view.findViewById(R.id.addTarget_editText)
         addTargetEditText.imeOptions = EditorInfo.IME_ACTION_DONE
+        if (savedInstanceState != null){
+            addTargetEditText.setText(savedInstanceState.getString(TYPED_TEXT_TAG))
+        }
         addTargetEditText.setOnEditorActionListener() { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 var dateTime = CmnFuncClass()
@@ -54,5 +57,10 @@ class AddTargetFragment : Fragment() {
             }
         }
         return view
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(TYPED_TEXT_TAG, addTargetEditText.text.toString())
     }
 }

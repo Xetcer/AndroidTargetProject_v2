@@ -19,10 +19,10 @@ class MainTargetFragment : Fragment() {
     lateinit var shareButton: FloatingActionButton
     lateinit var targetView: TextView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setRetainInstance(true)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setRetainInstance(true)
+//    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,34 +31,14 @@ class MainTargetFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_main_target, container, false)
         val target = MyDataAppClass.getInstance()
         var dateTime = CmnFuncClass()
-        target.targetList.add(
-            TargetClass(
-                "Измени образ мышления и ты именишь свою жизнь.",
-                dateTime.getDayTime()
-            )
-        )
-        target.targetList.add(
-            TargetClass(
-                "Что имеешь приносит выгоду, что не имеешь - пользу.",
-                dateTime.getDayTime()
-            )
-        )
-        target.targetList.add(
-            TargetClass(
-                "Путь воина - это гармония между действиями и решениями.",
-                dateTime.getDayTime()
-            )
-        )
-
         targetView = view.findViewById(R.id.currentTarget_textView)
-//        val cTarget =  target.targetList.random()
-//        if (savedInstanceState != null) {
-//            var message: String? = savedInstanceState.getString(RESTORE_TAG)
-//            targetView.text = message
-//
-//        } else {
+
+        if (savedInstanceState != null) {
+            var message: String? = savedInstanceState.getString(RESTORE_TAG)
+            targetView.text = message
+        } else {
             targetView.text = target.targetList.random().target
-//        }
+        }
         // отправим в другое приложение
         shareButton = view.findViewById(R.id.shareTarget_btn)
         shareButton.setOnClickListener {
@@ -75,10 +55,10 @@ class MainTargetFragment : Fragment() {
         return view
     }
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        outState.putString(RESTORE_TAG, targetView.text.toString())
-//        super.onSaveInstanceState(outState)
-//    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(RESTORE_TAG, targetView.text.toString())
+    }
 
 
 }

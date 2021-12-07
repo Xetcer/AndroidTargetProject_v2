@@ -10,6 +10,11 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+const val LAST_SELECTED_BOT_MENU_TAG = "BottomSelectedMenu"
+val MAIN_TARGET_FRAGMENT = MainTargetFragment().javaClass.name
+val ADD_TARGET_FRAGMENT = AddTargetFragment().javaClass.name
+val LIST_TARGET_FRAGMENT = ListTargetFragment().javaClass.name
+
 class MainActivity : AppCompatActivity() {
     lateinit var bottomNavigationMenu: BottomNavigationView
     var target = MyDataAppClass.getInstance()
@@ -23,13 +28,34 @@ class MainActivity : AppCompatActivity() {
             var fragment: Fragment? = null
             when (item.itemId) {
                 R.id.main_target_fragment -> {
-                    fragment = MainTargetFragment()
+                    if (savedInstanceState != null) {
+                        fragment = supportFragmentManager.getFragment(
+                            savedInstanceState,
+                            MAIN_TARGET_FRAGMENT
+                        )
+                    }
+                    if (fragment == null)
+                        fragment = MainTargetFragment()
                 }
                 R.id.add_target_fragment -> {
-                    fragment = AddTargetFragment()
+                    if (savedInstanceState != null) {
+                        fragment = supportFragmentManager.getFragment(
+                            savedInstanceState,
+                            ADD_TARGET_FRAGMENT
+                        )
+                    }
+                    if (fragment == null)
+                        fragment = AddTargetFragment()
                 }
                 R.id.list_target_fragment -> {
-                    fragment = ListTargetFragment()
+                    if (savedInstanceState != null) {
+                        fragment = supportFragmentManager.getFragment(
+                            savedInstanceState,
+                            LIST_TARGET_FRAGMENT
+                        )
+                    }
+                    if (fragment == null)
+                        fragment = ListTargetFragment()
                 }
             }
             if (fragment == null)
@@ -37,7 +63,8 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(fragment)
             true
         }
-        bottomNavigationMenu.selectedItemId = R.id.main_target_fragment
+        bottomNavigationMenu.selectedItemId =
+            savedInstanceState?.getInt(LAST_SELECTED_BOT_MENU_TAG) ?: R.id.main_target_fragment
     }
 
     fun replaceFragment(fragment: Fragment) {
@@ -45,6 +72,17 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(LAST_SELECTED_BOT_MENU_TAG, bottomNavigationMenu.selectedItemId)
+        val currentFragment = supportFragmentManager.fragments.last()
+        supportFragmentManager.putFragment(
+            outState,
+            currentFragment.javaClass.name,
+            currentFragment
+        )
     }
 
     private fun restoreTargets() {
