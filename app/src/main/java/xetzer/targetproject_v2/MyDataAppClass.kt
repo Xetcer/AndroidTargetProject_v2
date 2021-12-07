@@ -7,7 +7,9 @@ class MyDataAppClass:Application() {
     companion object{
         private var INSTANCE: MyDataAppClass ? =null
         fun getInstance():MyDataAppClass{
-            INSTANCE = MyDataAppClass()
+            if (INSTANCE == null) {
+                INSTANCE = MyDataAppClass()
+            }
             return INSTANCE!!
         }
     }

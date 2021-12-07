@@ -6,4 +6,6 @@
     <string name="add_target_text">Поставь новую цель</string>
     <string name="target_list">Список целей</string>
     <string name="send_to">отправить...</string>
+    <string name="new_target_is_add">Новая цель добавлена</string>
+    <string name="target_is_rpt">Такая цель уже есть в списке</string>
 </resources>
