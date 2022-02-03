@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ListTargetFragment : Fragment() {
-    lateinit var target_recycler_view: RecyclerView
+    private lateinit var targetRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val target = MyDataAppClass.getInstance()
-        var dateTime = CmnFuncClass()
+//        var dateTime = CmnFuncClass()
         // Inflate the layout for this fragment
 //        target.targetList.add(TargetClass("Измени образ мышления и ты именишь свою жизнь.", dateTime.getDayTime()))
 //        target.targetList.add(TargetClass("Что имеешь приносит выгоду, что не имеешь - пользу.", dateTime.getDayTime()))
@@ -30,11 +30,11 @@ class ListTargetFragment : Fragment() {
 //        target.targetList.add(TargetClass("Конечная цель любой деятельности человека – достижение покоя.", dateTime.getDayTime()))
 
         val view = inflater.inflate(R.layout.fragment_list_target, container, false)
-        target_recycler_view = view.findViewById(R.id.target_recycler_view)
-        target_recycler_view.layoutManager =
+        targetRecyclerView = view.findViewById(R.id.target_recycler_view)
+        targetRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        target_recycler_view.adapter = TargetAdapter(target.targetList)
-        target_recycler_view.addItemDecoration(DividerItemDecoration(target_recycler_view.context, DividerItemDecoration.VERTICAL))
+        targetRecyclerView.adapter = TargetAdapter(target.targetList)
+        targetRecyclerView.addItemDecoration(DividerItemDecoration(targetRecyclerView.context, DividerItemDecoration.VERTICAL))
         return view
     }
 }
