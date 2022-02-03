@@ -1,23 +1,18 @@
 package xetzer.targetproject_v2
 
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 const val LAST_SELECTED_BOT_MENU_TAG = "BottomSelectedMenu"
-val MAIN_TARGET_FRAGMENT = MainTargetFragment().javaClass.name
-val ADD_TARGET_FRAGMENT = AddTargetFragment().javaClass.name
-val LIST_TARGET_FRAGMENT = ListTargetFragment().javaClass.name
+val MAIN_TARGET_FRAGMENT: String = MainTargetFragment().javaClass.name
+val ADD_TARGET_FRAGMENT: String = AddTargetFragment().javaClass.name
+val LIST_TARGET_FRAGMENT: String = ListTargetFragment().javaClass.name
 
 class MainActivity : AppCompatActivity() {
-    lateinit var bottomNavigationMenu: BottomNavigationView
-    var target = MyDataAppClass.getInstance()
+    private lateinit var bottomNavigationMenu: BottomNavigationView
+    private var target = MyDataAppClass.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             savedInstanceState?.getInt(LAST_SELECTED_BOT_MENU_TAG) ?: R.id.main_target_fragment
     }
 
-    fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragment)
@@ -86,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun restoreTargets() {
-        var dateTime = CmnFuncClass()
+        val dateTime = CmnFuncClass()
         target.targetList.add(
             TargetClass(
                 "Измени образ мышления и ты именишь свою жизнь.",
