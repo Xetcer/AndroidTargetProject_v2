@@ -5,18 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import xetzer.targetproject_v2.viewModel.SharedViewModel
 
 class ListTargetFragment : Fragment() {
     private lateinit var targetRecyclerView: RecyclerView
-
+    private val sharedViewModel : SharedViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val target = MyDataAppClass.getInstance()
+        val target = TargetRepository.getInstance()
+        sharedViewModel.getTargets(viewLifecycleOwner)
 //        var dateTime = CmnFuncClass()
         // Inflate the layout for this fragment
 //        target.targetList.add(TargetClass("Измени образ мышления и ты именишь свою жизнь.", dateTime.getDayTime()))
@@ -33,7 +36,7 @@ class ListTargetFragment : Fragment() {
         targetRecyclerView = view.findViewById(R.id.target_recycler_view)
         targetRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        targetRecyclerView.adapter = TargetAdapter(target.targetList)
+        targetRecyclerView.adapter = TargetAdapter(sharedViewModel.targetList)
         targetRecyclerView.addItemDecoration(DividerItemDecoration(targetRecyclerView.context, DividerItemDecoration.VERTICAL))
         return view
     }
