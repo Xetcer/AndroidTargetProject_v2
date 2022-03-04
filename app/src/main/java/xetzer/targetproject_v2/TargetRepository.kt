@@ -12,7 +12,7 @@ private const val DATABASE_NAME = "crime-database"
 class TargetRepository private constructor (context: Context) {
 
     companion object{
-        private var INSTANCE: TargetRepository ? =null
+        private var INSTANCE: TargetRepository ? = null
         fun initialize(context: Context){
             if (INSTANCE == null) {
                 INSTANCE = TargetRepository(context)

@@ -1,7 +1,6 @@
 package xetzer.targetproject_v2.viewModel
 
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import xetzer.targetproject_v2.TargetClass
 import xetzer.targetproject_v2.TargetRepository
@@ -13,14 +12,14 @@ class SharedViewModel : ViewModel() {
         targetRepository.addTarget(target)
     }
 
-    fun getTargets(viewLifecycleOwner: LifecycleOwner) {
+    fun getTargets(viewLifecycleOwner: LifecycleOwner, ) {
         val targetListLiveData = targetRepository.getTargets()
         targetListLiveData.observe(
-            viewLifecycleOwner, Observer { targets ->
-                targets?.let {
-                    this.targetList = targets
-                }
+            viewLifecycleOwner
+        ) { targets ->
+            targets?.let {
+                this.targetList = targets
             }
-        )
+        }
     }
 }

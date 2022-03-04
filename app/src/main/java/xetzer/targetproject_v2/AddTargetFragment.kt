@@ -13,49 +13,51 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import xetzer.targetproject_v2.viewModel.SharedViewModel
 
-const val TYPED_TEXT_TAG = "TepedText"
+const val TYPED_TEXT_TAG = "TypedText"
+
 class AddTargetFragment : Fragment() {
-    lateinit var addTargetEditText: EditText
+    private lateinit var addTargetEditText: EditText
     private val sharedViewModel: SharedViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val target = TargetRepository.getInstance()
         val view = inflater.inflate(R.layout.fragment_add_target, container, false)
         addTargetEditText = view.findViewById(R.id.addTarget_editText)
         addTargetEditText.imeOptions = EditorInfo.IME_ACTION_DONE
         sharedViewModel.getTargets(viewLifecycleOwner)
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             addTargetEditText.setText(savedInstanceState.getString(TYPED_TEXT_TAG))
         }
-        addTargetEditText.setOnEditorActionListener() { _, actionId, _ ->
+        addTargetEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                var dateTime = CmnFuncClass()
+                val dateTime = CmnFuncClass()
                 // скрыть клавиатуру после
-                val inputMethodManager = context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                val inputMethodManager =
+                    context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
                 var rptCounter = 0
-                for (item in sharedViewModel.targetList){
+                for (item in sharedViewModel.targetList) {
                     if (item.target == addTargetEditText.text.toString()) {
                         rptCounter++
                         break
                     }
                 }
-                if (rptCounter==0) {
-                    val target = TargetClass(addTargetEditText.text.toString(),
-                        dateTime.getDayTime())
+                if (rptCounter == 0) {
+                    val target = TargetClass(
+                        addTargetEditText.text.toString(),
+                        dateTime.getDayTime()
+                    )
                     sharedViewModel.addTarget(target)
-//                    sharedViewModel.targetList.add(
-//                        TargetClass(
-//                            addTargetEditText.text.toString(),
-//                            dateTime.getDayTime()
-//                        )
-//                    )
-                    Toast.makeText(context, getString(R.string.new_target_is_add), Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(context, getString(R.string.target_is_rpt), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.new_target_is_add),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(context, getString(R.string.target_is_rpt), Toast.LENGTH_SHORT)
+                        .show()
                 }
                 addTargetEditText.text.clear()
                 true
