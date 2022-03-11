@@ -26,17 +26,7 @@ class MainTargetFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main_target, container, false)
 
-//        sharedViewModel.getTargets(viewLifecycleOwner)
-
         targetView = view.findViewById(R.id.currentTarget_textView)
-
-
-//        if (savedInstanceState != null) {
-//            val message: String? = savedInstanceState.getString(RESTORE_TAG)
-//            targetView.text = message
-//        } else {
-//            targetView.text = "Loading targets"
-//        }
 
         sharedViewModel.getTargetsTest(viewLifecycleOwner)
         if ( savedInstanceState != null){
@@ -68,8 +58,6 @@ class MainTargetFragment : Fragment() {
         }
         return view
     }
-
-
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
