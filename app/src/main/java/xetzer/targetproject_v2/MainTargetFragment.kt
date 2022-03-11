@@ -26,19 +26,33 @@ class MainTargetFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main_target, container, false)
 
-        sharedViewModel.getTargets(viewLifecycleOwner)
+//        sharedViewModel.getTargets(viewLifecycleOwner)
 
         targetView = view.findViewById(R.id.currentTarget_textView)
 
 
-        if (savedInstanceState != null) {
+//        if (savedInstanceState != null) {
+//            val message: String? = savedInstanceState.getString(RESTORE_TAG)
+//            targetView.text = message
+//        } else {
+//            targetView.text = "Loading targets"
+//        }
+
+        sharedViewModel.getTargetsTest(viewLifecycleOwner)
+        if ( savedInstanceState != null){
             val message: String? = savedInstanceState.getString(RESTORE_TAG)
             targetView.text = message
-        } else {
-            targetView.text =
-                if (sharedViewModel.targetList.size > 0) sharedViewModel.targetList.random().target
-                else ""
+        }else{
+            // Обновление значений из базы данных в режиме реального времени.
+            sharedViewModel.targetListTst?.observe(viewLifecycleOwner) { targets ->
+                if (targets.size > 0) {
+                    targetView.text = targets.random().target
+                } else {
+                    targetView.text = R.string.loadingTarget.toString()
+                }
+            }
         }
+
         // отправим в другое приложение
         shareButton = view.findViewById(R.id.shareTarget_btn)
         shareButton.setOnClickListener {
@@ -54,6 +68,8 @@ class MainTargetFragment : Fragment() {
         }
         return view
     }
+
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

@@ -8,4 +8,5 @@
     <string name="send_to">отправить...</string>
     <string name="new_target_is_add">Новая цель добавлена</string>
     <string name="target_is_rpt">Такая цель уже есть в списке</string>
+    <string name="loadingTarget">Loading targets</string>
 </resources>
