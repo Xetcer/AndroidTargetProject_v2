@@ -10,6 +10,7 @@ class SharedViewModel : ViewModel() {
     private val targetRepository = TargetRepository.getInstance()
     var targetList: MutableList<TargetClass> = mutableListOf()
     var targetListTst : LiveData<MutableList<TargetClass>> ? = null
+    var editTarget: TargetClass? = null
 
     fun addTarget(target: TargetClass) {
         targetRepository.addTarget(target)
@@ -25,8 +26,23 @@ class SharedViewModel : ViewModel() {
             }
         }
     }
-    fun getTargetsTest(viewLifecycleOwner: LifecycleOwner) : LiveData<MutableList<TargetClass>> ? {
+    fun getTargetsTest(viewLifecycleOwner: LifecycleOwner): LiveData<MutableList<TargetClass>> ? {
         targetListTst = targetRepository.getTargets()
+        targetListTst?.observe(
+            viewLifecycleOwner
+        ) { targets ->
+            targets?.let {
+                this.targetList = targets
+            }
+        }
         return targetListTst
+    }
+
+    fun updateTarget(target:TargetClass){
+        targetRepository.updateTarget(target)
+    }
+
+    fun deleteTarget(target: TargetClass){
+        targetRepository.deleteTarget(target)
     }
 }

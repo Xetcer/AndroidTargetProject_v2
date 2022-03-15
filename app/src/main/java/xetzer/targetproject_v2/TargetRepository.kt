@@ -43,6 +43,11 @@ class TargetRepository private constructor (context: Context) {
             targetDao.updateTarget(target)
         }
     }
+    fun deleteTarget(target:TargetClass){
+        executor.execute {
+            targetDao.delete(target)
+        }
+    }
 
 }
 

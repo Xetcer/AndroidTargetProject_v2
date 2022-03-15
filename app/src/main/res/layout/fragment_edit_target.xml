@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditTargetFragment">
+
+    <TextView
+        android:id="@+id/current_target"
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cur_target"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/target_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/current_target"
+        android:hint="@string/testTarget"
+        />
+
+    <Button
+        android:id="@+id/edit_target_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/editTarget"
+        app:layout_constraintTop_toBottomOf="@id/target_edit_text" />
+
+    <Button
+        android:id="@+id/delete_target_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_target"
+        app:layout_constraintTop_toBottomOf="@id/edit_target_button"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

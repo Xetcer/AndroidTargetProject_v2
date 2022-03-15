@@ -10,7 +10,7 @@ val MAIN_TARGET_FRAGMENT: String = MainTargetFragment().javaClass.name
 val ADD_TARGET_FRAGMENT: String = AddTargetFragment().javaClass.name
 val LIST_TARGET_FRAGMENT: String = ListTargetFragment().javaClass.name
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),  TargetListCallback {
     private lateinit var bottomNavigationMenu: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,6 +77,15 @@ class MainActivity : AppCompatActivity() {
             currentFragment.javaClass.name,
             currentFragment
         )
+    }
+
+    override fun onTargetSelected(target: TargetClass) {
+        val fragment = EditTargetFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
 }

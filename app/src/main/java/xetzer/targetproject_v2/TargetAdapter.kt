@@ -4,7 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class TargetAdapter(private val targetList: List<TargetClass>) :
+class TargetAdapter(
+    private val targetList: List<TargetClass>,
+    private val listener: (TargetClass) -> Unit
+) :
     RecyclerView.Adapter<TargetViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TargetViewHolder {
         val itemView =
@@ -15,6 +18,7 @@ class TargetAdapter(private val targetList: List<TargetClass>) :
     override fun onBindViewHolder(holder: TargetViewHolder, position: Int) {
         val target = targetList[position]
         holder.bind(target)
+        holder.itemView.setOnClickListener { listener(target) }
     }
 
     override fun getItemCount(): Int {
