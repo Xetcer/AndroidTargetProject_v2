@@ -9,6 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/add_target_textView"
+        style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -21,7 +22,15 @@
         android:layout_height="wrap_content"
         android:imeOptions="actionDone"
         android:singleLine="true"
-        app:layout_constraintTop_toBottomOf="@id/add_target_textView"
-        />
+        android:inputType="textCapSentences"
+        app:layout_constraintTop_toBottomOf="@id/add_target_textView" />
+
+    <Button
+        android:id="@+id/delete_all_targets_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_target"
+        android:enabled="false"
+        app:layout_constraintTop_toBottomOf="@id/addTarget_editText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/target_list_textView"
+        style="@style/Theme.TargetProject_v2.TextViewBold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -17,12 +18,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="2dp"
         android:id="@+id/target_recycler_view"
-        app:layout_constraintTop_toBottomOf="@id/target_list_textView"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        />
+        android:padding="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/target_list_textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

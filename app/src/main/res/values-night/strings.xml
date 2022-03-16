@@ -12,4 +12,6 @@
     <string name="testTarget">Чтобы Тебя заметили Боги, нужно быть впереди!</string>
     <string name="editTarget">ИЗМЕНИТЬ</string>
     <string name="delete_target">УДАЛИТЬ</string>
+    <string name="target_image">Изображение цели</string>
+    <string name="testDate">16.03.22</string>
 </resources>

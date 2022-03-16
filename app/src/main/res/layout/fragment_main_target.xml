@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@+id/target_textView" />
 
     <TextView
-        android:id="@+id/targetDateTime_textView"
+        android:id="@+id/target_date_text_view"
         style="@style/Theme.TargetProject_v2.TextViewBold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
     <ImageView
         android:id="@+id/mainImage_imageView"
         style="@style/Theme.TargetProject_v2.ImageView"
-        app:layout_constraintTop_toTopOf="@+id/targetDateTime_textView"
+        app:layout_constraintTop_toTopOf="@+id/target_date_text_view"
         app:layout_constraintBottom_toTopOf="@+id/shareTarget_btn"
         android:layout_width="match_parent"
         android:layout_height="0dp" />

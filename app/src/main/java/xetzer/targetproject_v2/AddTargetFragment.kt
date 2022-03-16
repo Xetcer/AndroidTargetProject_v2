@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -17,6 +18,7 @@ const val TYPED_TEXT_TAG = "TypedText"
 
 class AddTargetFragment : Fragment() {
     private lateinit var addTargetEditText: EditText
+    private lateinit var deleteTargetsButton:Button
     private val sharedViewModel: SharedViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +28,11 @@ class AddTargetFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_target, container, false)
         addTargetEditText = view.findViewById(R.id.addTarget_editText)
         addTargetEditText.imeOptions = EditorInfo.IME_ACTION_DONE
-        sharedViewModel.getTargets(viewLifecycleOwner)
+        deleteTargetsButton = view.findViewById(R.id.delete_all_targets_button)
+        deleteTargetsButton.setOnClickListener {
+            sharedViewModel.deleteBD()
+        }
+
         if (savedInstanceState != null) {
             addTargetEditText.setText(savedInstanceState.getString(TYPED_TEXT_TAG))
         }
@@ -38,10 +44,14 @@ class AddTargetFragment : Fragment() {
                     context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
                 var rptCounter = 0
-                for (item in sharedViewModel.targetList) {
-                    if (item.target == addTargetEditText.text.toString()) {
-                        rptCounter++
-                        break
+                sharedViewModel.targetList.observe(viewLifecycleOwner) { targets ->
+                    targets?.let {
+                        for (item in it) {
+                            if (item.target == addTargetEditText.text.toString()) {
+                                rptCounter++
+                                break
+                            }
+                        }
                     }
                 }
                 if (rptCounter == 0) {

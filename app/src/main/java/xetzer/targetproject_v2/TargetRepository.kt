@@ -8,7 +8,7 @@ import xetzer.targetproject_v2.database.TargetsDataBase
 import java.util.*
 import java.util.concurrent.Executors
 
-private const val DATABASE_NAME = "crime-database"
+private const val DATABASE_NAME = "targets-database"
 class TargetRepository private constructor (context: Context) {
 
     companion object{
@@ -28,9 +28,14 @@ class TargetRepository private constructor (context: Context) {
         TargetsDataBase::class.java,
         DATABASE_NAME
     ).build()
+
     private val targetDao = dataBase.targetDao()
     private val executor = Executors.newSingleThreadExecutor()
-
+    fun deleteDataBase(){
+        executor.execute {
+            dataBase.clearAllTables()
+        }
+    }
     fun getTargets() : LiveData<MutableList<TargetClass>> = targetDao.getAllTargets()
     fun getTarget(id:UUID): LiveData<TargetClass?> = targetDao.getTarget(id)
     fun addTarget(target:TargetClass){

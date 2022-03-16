@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">targetProject_v2</string>
+    <string name="app_name">Стремления</string>
     <string name="main_target">main_target</string>
     <string name="add_target">add_target</string>
     <string name="list_target">list_target</string>
@@ -16,4 +16,6 @@
     <string name="testTarget">Чтобы Тебя заметили Боги, нужно быть впереди!</string>
     <string name="editTarget">ИЗМЕНИТЬ</string>
     <string name="delete_target">УДАЛИТЬ</string>
+    <string name="target_image">Изображение цели</string>
+    <string name="testDate">16.03.22</string>
 </resources>

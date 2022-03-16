@@ -28,13 +28,12 @@ class MainTargetFragment : Fragment() {
 
         targetView = view.findViewById(R.id.currentTarget_textView)
 
-        sharedViewModel.getTargetsTest(viewLifecycleOwner)
         if ( savedInstanceState != null){
             val message: String? = savedInstanceState.getString(RESTORE_TAG)
             targetView.text = message
         }else{
             // Обновление значений из базы данных в режиме реального времени.
-            sharedViewModel.targetListTst?.observe(viewLifecycleOwner) { targets ->
+            sharedViewModel.targetList.observe(viewLifecycleOwner) { targets ->
                 if (targets.size > 0) {
                     targetView.text = targets.random().target
                 } else {

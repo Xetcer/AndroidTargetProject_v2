@@ -35,12 +35,12 @@ class EditTargetFragment : Fragment() {
             }
             parentFragmentManager.popBackStackImmediate()
         }
-        deleteTargetButton.setOnClickListener {
-            sharedViewModel.editTarget?.let {
-                sharedViewModel.deleteTarget(it)
-            }
-            parentFragmentManager.popBackStackImmediate()
-        }
+//        deleteTargetButton.setOnClickListener {
+//            sharedViewModel.editTarget?.let {
+//                sharedViewModel.deleteTarget(it)
+//            }
+//            parentFragmentManager.popBackStackImmediate()
+//        }
         val text = sharedViewModel.editTarget?.target
         targetEditText.text = Editable.Factory.getInstance().newEditable(text)
         return view
@@ -48,7 +48,7 @@ class EditTargetFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var targetWatcher = object : TextWatcher {
+        val targetWatcher = object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
