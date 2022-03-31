@@ -53,7 +53,6 @@ class TargetRepository private constructor (context: Context) {
             targetDao.delete(target)
         }
     }
-
 }
 
 class ApplicationInit : Application(){

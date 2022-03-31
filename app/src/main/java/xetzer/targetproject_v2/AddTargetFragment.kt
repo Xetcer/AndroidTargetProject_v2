@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.activityViewModels
 import xetzer.targetproject_v2.viewModel.SharedViewModel
 
@@ -19,6 +17,9 @@ const val TYPED_TEXT_TAG = "TypedText"
 class AddTargetFragment : Fragment() {
     private lateinit var addTargetEditText: EditText
     private lateinit var deleteTargetsButton:Button
+    private lateinit var targetImageView: ImageView
+    private lateinit var takePhotoButton: ImageButton
+    private lateinit var takeImageButton: ImageButton
     private val sharedViewModel: SharedViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +33,9 @@ class AddTargetFragment : Fragment() {
         deleteTargetsButton.setOnClickListener {
             sharedViewModel.deleteBD()
         }
+        targetImageView = view.findViewById(R.id.main_image_imageView)
+        takePhotoButton = view.findViewById(R.id.take_photo_button)
+        takeImageButton = view.findViewById(R.id.take_image_button)
 
         if (savedInstanceState != null) {
             addTargetEditText.setText(savedInstanceState.getString(TYPED_TEXT_TAG))

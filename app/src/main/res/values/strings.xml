@@ -18,4 +18,6 @@
     <string name="delete_target">УДАЛИТЬ</string>
     <string name="target_image">Изображение цели</string>
     <string name="testDate">16.03.22</string>
+    <string name="take_photo">Сделать фото</string>
+    <string name="choose_photo">выбрать</string>
 </resources>

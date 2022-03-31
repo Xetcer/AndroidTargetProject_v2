@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/currentTarget_textView" />
 
     <ImageView
-        android:id="@+id/mainImage_imageView"
+        android:id="@+id/main_image_imageView"
         style="@style/Theme.TargetProject_v2.ImageView"
         app:layout_constraintTop_toTopOf="@+id/target_date_text_view"
         app:layout_constraintBottom_toTopOf="@+id/shareTarget_btn"
