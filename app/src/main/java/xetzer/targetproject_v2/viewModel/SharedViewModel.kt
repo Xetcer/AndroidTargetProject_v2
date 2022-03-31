@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import xetzer.targetproject_v2.TargetClass
 import xetzer.targetproject_v2.TargetRepository
+import java.io.File
 
 class SharedViewModel : ViewModel() {
     private val targetRepository = TargetRepository.getInstance()
@@ -25,5 +26,9 @@ class SharedViewModel : ViewModel() {
 
     fun deleteTarget(target: TargetClass){
         targetRepository.deleteTarget(target)
+    }
+
+    fun getPhotoFile (target: TargetClass) : File {
+        return targetRepository.getPhotoFile(target)
     }
 }
