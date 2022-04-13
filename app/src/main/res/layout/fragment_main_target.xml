@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainTargetFragment">
-    <!-- TODO: Update blank fragment layout -->
+    <layout xmlns:android = "http://schemas.android.com/apk/res/android"
+        xmlns:tools ="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="xetzer.targetproject_v2.viewModel.MainTargetViewModel" />
+    </data>
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainTargetFragment">
+            <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:id="@+id/target_textView"
@@ -14,13 +19,15 @@
         android:text="@string/cur_target"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/currentTarget_textView"
         style="@style/Theme.TargetProject_v2.TextViewBold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/no_target"
+        android:text="@{viewModel.target.target}"
         app:layout_constraintTop_toBottomOf="@+id/target_textView" />
+<!--            string/no_target-->
 
     <TextView
         android:id="@+id/target_date_text_view"
@@ -63,3 +70,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

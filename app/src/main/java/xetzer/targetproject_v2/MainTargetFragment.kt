@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import xetzer.targetproject_v2.databinding.FragmentMainTargetBinding
+import xetzer.targetproject_v2.viewModel.MainTargetViewModel
 import xetzer.targetproject_v2.viewModel.SharedViewModel
 
 const val RESTORE_TAG = "RestoreTag"
@@ -18,6 +21,12 @@ class MainTargetFragment : Fragment() {
     private lateinit var shareButton: FloatingActionButton
     private lateinit var targetView: TextView
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainTargetViewModel = MainTargetViewModel()
+
+    override fun onStart() {
+        super.onStart()
+        mainTargetViewModel.startTargetObserve(viewLifecycleOwner, sharedViewModel)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

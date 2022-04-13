@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "targetProject_v2"
 include ':app'
+include ':PictureUtils'

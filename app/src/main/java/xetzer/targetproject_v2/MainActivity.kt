@@ -1,9 +1,12 @@
 package xetzer.targetproject_v2
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import xetzer.targetproject_v2.databinding.FragmentMainTargetBinding
 
 const val LAST_SELECTED_BOT_MENU_TAG = "BottomSelectedMenu"
 val MAIN_TARGET_FRAGMENT: String = MainTargetFragment().javaClass.name
@@ -22,31 +25,47 @@ class MainActivity : AppCompatActivity(),  TargetListCallback {
             var fragment: Fragment? = null
             when (item.itemId) {
                 R.id.main_target_fragment -> {
-                    if (savedInstanceState != null) {
-                        fragment = supportFragmentManager.getFragment(
-                            savedInstanceState,
-                            MAIN_TARGET_FRAGMENT
-                        )
+                    try {
+                        if (savedInstanceState != null) {
+                            fragment = supportFragmentManager.getFragment(
+                                savedInstanceState,
+                                MAIN_TARGET_FRAGMENT
+                            )
+                            val binding: FragmentMainTargetBinding = DataBindingUtil.setContentView(this, R.layout.fragment_main_target)
+                        }
+                    }catch ( ex: Exception){
+                        fragment = null
+                        Toast.makeText(this, "При смене фрагментов ${ex.toString()}", Toast.LENGTH_LONG).show()
                     }
                     if (fragment == null)
                         fragment = MainTargetFragment()
                 }
                 R.id.add_target_fragment -> {
-                    if (savedInstanceState != null) {
-                        fragment = supportFragmentManager.getFragment(
-                            savedInstanceState,
-                            ADD_TARGET_FRAGMENT
-                        )
+                    try {
+                        if (savedInstanceState != null) {
+                            fragment = supportFragmentManager.getFragment(
+                                savedInstanceState,
+                                ADD_TARGET_FRAGMENT
+                            )
+                        }
+                    }catch (ex: Exception){
+                        fragment = null
+                        Toast.makeText(this, "При смене фрагментов ${ex.toString()}", Toast.LENGTH_LONG).show()
                     }
                     if (fragment == null)
                         fragment = AddTargetFragment()
                 }
                 R.id.list_target_fragment -> {
-                    if (savedInstanceState != null) {
-                        fragment = supportFragmentManager.getFragment(
-                            savedInstanceState,
-                            LIST_TARGET_FRAGMENT
-                        )
+                    try {
+                        if (savedInstanceState != null) {
+                            fragment = supportFragmentManager.getFragment(
+                                savedInstanceState,
+                                LIST_TARGET_FRAGMENT
+                            )
+                        }
+                    }catch (ex: Exception){
+                        fragment = null
+                        Toast.makeText(this, "При смене фрагментов ${ex.toString()}", Toast.LENGTH_LONG).show()
                     }
                     if (fragment == null)
                         fragment = ListTargetFragment()
