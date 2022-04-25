@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 class TargetAdapter(
     private val targetList: List<TargetClass>,
     private val editListener: (TargetClass) -> Unit,
-    private val deleteListener: (TargetClass) -> Unit
+    private val deleteListener: (TargetClass) -> Unit,
+    private val photoListener: (TargetClass) -> Unit
 ) :
     RecyclerView.Adapter<TargetViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TargetViewHolder {
@@ -19,7 +20,9 @@ class TargetAdapter(
     override fun onBindViewHolder(holder: TargetViewHolder, position: Int) {
         val target = targetList[position]
         holder.bind(target, editListener, deleteListener)
-//        holder.itemView.setOnClickListener { listener(target) }
+        holder.itemView.setOnClickListener {
+            photoListener(target)
+        }
     }
 
     override fun getItemCount(): Int {

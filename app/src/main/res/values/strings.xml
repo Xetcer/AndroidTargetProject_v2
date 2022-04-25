@@ -21,4 +21,5 @@
     <string name="take_photo">Сделать фото</string>
     <string name="choose_photo">выбрать</string>
     <string name="target_is_empty">Нет цели - нет пути!</string>
+    <string name="Dismiss">Закрыть</string>
 </resources>

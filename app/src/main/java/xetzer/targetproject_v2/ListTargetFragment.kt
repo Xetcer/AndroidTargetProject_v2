@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import xetzer.targetproject_v2.viewModel.SharedViewModel
-
+import java.io.File
+private const val DIALOG_PICTURE = "DialogPicture"
 class ListTargetFragment : Fragment() {
     private lateinit var targetRecyclerView: RecyclerView
     private var callbacks: TargetListCallback? = null
@@ -39,7 +40,7 @@ class ListTargetFragment : Fragment() {
     }
 
     private fun updateList(targets : List<TargetClass>){
-        adapter = TargetAdapter(targets, editTarget, deleteTarget)
+        adapter = TargetAdapter(targets, editTarget, deleteTarget, showPhoto)
         targetRecyclerView.adapter = adapter
     }
     // Лямбда обработчик кнопки изменить на ViewHolder
@@ -52,6 +53,17 @@ class ListTargetFragment : Fragment() {
     private val deleteTarget : EditTarget = {
         target : TargetClass ->
         sharedViewModel.deleteTarget(target)
+    }
+
+    private val showPhoto: EditTarget = {
+        target: TargetClass ->
+        val targetRepository = TargetRepository.getInstance()
+        var photoFile: File = targetRepository.getPhotoFile(target)
+        if (photoFile.exists()){
+            TargetDialogFragment.newInstance(photoFile).apply{
+                show(this@ListTargetFragment.parentFragmentManager, DIALOG_PICTURE )
+            }
+        }
     }
 
     override fun onAttach(context: Context) {
