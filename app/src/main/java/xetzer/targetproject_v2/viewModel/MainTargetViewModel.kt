@@ -6,10 +6,12 @@ import androidx.lifecycle.LifecycleOwner
 import xetzer.targetproject_v2.R
 import xetzer.targetproject_v2.TargetClass
 
-class MainTargetViewModel : BaseObservable() {
+class MainTargetViewModel(private var callback: () -> Unit) : BaseObservable() {
+
+
     // Текущая цель
     @get:Bindable
-    var target: TargetClass = TargetClass(target = R.string.loadingTarget.toString())
+    var target: TargetClass = TargetClass(text = R.string.loadingTarget.toString())
         set(target) {
             field = target
             notifyChange()
@@ -19,6 +21,7 @@ class MainTargetViewModel : BaseObservable() {
         sharedViewModel.targetList.observe(lifecycleOwner) { targets ->
             if (targets.size > 0) {
                 target = targets.random()
+                callback()
             }
         }
     }

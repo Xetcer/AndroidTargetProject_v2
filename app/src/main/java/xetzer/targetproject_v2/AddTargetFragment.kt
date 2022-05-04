@@ -41,10 +41,6 @@ class AddTargetFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_target, container, false)
         addTargetEditText = view.findViewById(R.id.addTarget_editText)
         addTargetEditText.imeOptions = EditorInfo.IME_ACTION_DONE
-        deleteTargetsButton = view.findViewById(R.id.delete_all_targets_button)
-        deleteTargetsButton.setOnClickListener {
-            sharedViewModel.deleteBD()
-        }
         targetImageView = view.findViewById(R.id.main_image_imageView)
         takePhotoButton = view.findViewById(R.id.take_photo_button)
         takeImageButton = view.findViewById(R.id.take_image_button)
@@ -95,7 +91,7 @@ class AddTargetFragment : Fragment() {
                     sharedViewModel.targetList.observe(viewLifecycleOwner) { targets ->
                         targets?.let {
                             for (item in it) {
-                                if (item.target == newTargetText) {
+                                if (item.text == newTargetText) {
                                     addTargetViewModel.target = item
                                     rptCounter++
                                     break

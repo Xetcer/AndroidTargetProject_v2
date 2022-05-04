@@ -1,6 +1,5 @@
 package xetzer.targetproject_v2
 
-import android.app.Activity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -22,7 +21,7 @@ class TargetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         editTargetListener: (TargetClass) -> Unit,
         deleteTargetListener: (TargetClass) -> Unit
     ) {
-        targetTextView.text = target.target
+        targetTextView.text = target.text
         dateTimeTextView.text = target.dateTime
         editTargetButton.setOnClickListener {
             editTargetListener(target)

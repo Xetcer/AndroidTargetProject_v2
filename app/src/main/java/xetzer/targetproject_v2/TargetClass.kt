@@ -6,7 +6,7 @@ import java.util.*
 
 @Entity
 data class TargetClass(
-    var target: String = "",       // Цель
+    var text: String = "",       // Цель
     var dateTime: String = ""      // Дата создания в формате д.м.г ч.м
 ) {
     @PrimaryKey

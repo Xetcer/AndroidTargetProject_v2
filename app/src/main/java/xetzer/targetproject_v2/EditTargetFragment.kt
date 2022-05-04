@@ -41,7 +41,7 @@ class EditTargetFragment : Fragment() {
 //            }
 //            parentFragmentManager.popBackStackImmediate()
 //        }
-        val text = sharedViewModel.editTarget?.target
+        val text = sharedViewModel.editTarget?.text
         targetEditText.text = Editable.Factory.getInstance().newEditable(text)
         return view
     }
@@ -54,7 +54,7 @@ class EditTargetFragment : Fragment() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                sharedViewModel.editTarget?.target = p0.toString()
+                sharedViewModel.editTarget?.text = p0.toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {

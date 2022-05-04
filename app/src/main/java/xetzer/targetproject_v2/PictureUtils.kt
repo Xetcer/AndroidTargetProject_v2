@@ -18,6 +18,7 @@ class PictureUtils {
 //        }else{
 //            @Suppress("DEPRECATION")
         activity.windowManager.defaultDisplay.getSize(size)
+
 //        }
         return getScaledBitmap(path, size.x, size.y)
     }
